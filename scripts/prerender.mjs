@@ -16,14 +16,43 @@
  * Run as part of `npm run build`.
  * ============================================================
  */
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const distDir = join(root, 'dist')
+const ssrDir = join(root, 'dist-ssr')
 
-const { render } = await import(pathToFileURL(join(root, 'dist-ssr', 'entry-server.js')).href)
+/**
+ * Locate the built SSR entry file under dist-ssr/.
+ *
+ * We don't hardcode "dist-ssr/entry-server.js" because some build pipelines
+ * (e.g. a bundler plugin added by a deploy tool's auto-config step) can emit
+ * it with a content hash and/or inside a nested "assets/" folder instead of
+ * as a flat, unhashed file. Searching for it avoids a silent breakage if the
+ * output layout ever changes again.
+ */
+function findEntryServer(dir) {
+  for (const entry of readdirSync(dir)) {
+    const full = join(dir, entry)
+    const stats = statSync(full)
+    if (stats.isDirectory()) {
+      const found = findEntryServer(full)
+      if (found) return found
+    } else if (/^entry-server(?:[.-][\w]+)?\.js$/.test(entry)) {
+      return full
+    }
+  }
+  return null
+}
+
+const entryServerPath = findEntryServer(ssrDir)
+if (!entryServerPath) {
+  throw new Error(`prerender: could not find an entry-server*.js build output under ${ssrDir}`)
+}
+
+const { render } = await import(pathToFileURL(entryServerPath).href)
 
 // site.js is plain ESM with no JSX and no imports, so Node can read it directly.
 const { siteUrl } = await import(pathToFileURL(join(root, 'src', 'data', 'site.js')).href)
