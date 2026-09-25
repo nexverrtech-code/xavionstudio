@@ -1,0 +1,18 @@
+{
+  "name": "Xavion Fitness Studio",
+  "short_name": "Xavion",
+  "description": "Premium fitness and personal training studio in Thindal, Erode, Tamil Nadu.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#171814",
+  "theme_color": "#171814",
+  "lang": "en-IN",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

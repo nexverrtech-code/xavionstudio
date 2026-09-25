@@ -1,0 +1,7 @@
+# Xavion Fitness Studio — Thindal, Erode, Tamil Nadu
+
+User-agent: *
+Allow: /
+
+# ⚠️ CONFIRM — update the host below once the live domain is registered.
+Sitemap: https://xavionfitnessstudio.com/sitemap.xml

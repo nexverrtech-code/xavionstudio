@@ -1,0 +1,370 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   XAVION FITNESS STUDIO — DESIGN TOKENS
+   Royal · Soft · Premium · Modern
+   ============================================================ */
+
+@theme {
+  /* ---- Colour ---- */
+  --color-night: #171814;
+  --color-charcoal: #22231f;
+  --color-ivory: #f7f4ec;
+  --color-cream: #eee8da;
+  --color-gold: #c7a76a;
+  --color-gold-soft: #dfc98f;
+  --color-sage: #b9c6a8;
+  --color-olive: #344033;
+  --color-ink: #252622;
+  --color-muted: #72736c;
+
+  /* Tints derived for borders / washes — kept few on purpose */
+  --color-ivory-dim: #ebe5d7;
+  --color-line: #e2dbca;
+
+  /* ---- Type ---- */
+  --font-display: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* Editorial display scale — tight leading, confident sizes */
+  --text-display-sm: 2.25rem;
+  --text-display-sm--line-height: 1.04;
+  --text-display-sm--letter-spacing: -0.025em;
+  --text-display: 3.25rem;
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.03em;
+  --text-display-lg: 4.5rem;
+  --text-display-lg--line-height: 0.94;
+  --text-display-lg--letter-spacing: -0.035em;
+  --text-display-xl: 6rem;
+  --text-display-xl--line-height: 0.92;
+  --text-display-xl--letter-spacing: -0.04em;
+
+  /* ---- Motion ---- */
+  --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ---- Elevation — soft and low, never heavy ---- */
+  --shadow-soft: 0 1px 2px rgb(23 24 20 / 0.04), 0 12px 32px -12px rgb(23 24 20 / 0.1);
+  --shadow-lift: 0 2px 4px rgb(23 24 20 / 0.05), 0 24px 56px -20px rgb(23 24 20 / 0.16);
+
+  /* ---- Radii ---- */
+  --radius-card: 1.25rem;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-feature-settings: 'cv11', 'ss01';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Visible, on-brand focus — never removed */
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background-color: var(--color-gold);
+    color: var(--color-night);
+  }
+
+  /* Ivory scrollbar on dark sections stays subtle */
+  @supports (scrollbar-width: thin) {
+    .scrollbar-none {
+      scrollbar-width: none;
+    }
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ============================================================
+   COMPONENT PRIMITIVES
+   Only patterns reused across 3+ places live here.
+   ============================================================ */
+
+@layer components {
+  /* ----------------------------------------------------------
+     LAYOUT RHYTHM
+     Every section uses these two, so the whole page's vertical
+     spacing can be tuned from here rather than from forty files.
+     ---------------------------------------------------------- */
+  .shell {
+    margin-inline: auto;
+    max-width: 80rem;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .shell {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .shell {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* Standard section padding — deliberately tighter than the usual
+     py-24/py-32 default, which leaves big empty bands on laptops. */
+  .section-y {
+    padding-block: 4.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .section-y {
+      padding-block: 5.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-y {
+      padding-block: 6.5rem;
+    }
+  }
+
+  /* The gap between a section's heading block and its content */
+  .section-gap {
+    margin-top: 2.75rem;
+  }
+
+  @media (min-width: 1024px) {
+    .section-gap {
+      margin-top: 3.5rem;
+    }
+  }
+
+  /* Small uppercase eyebrow label used above headings */
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  /* Hairline rule that fades — used as a section divider */
+  .rule-fade {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-line), transparent);
+  }
+
+  /* Glass card over cinematic imagery */
+  .glass {
+    background: rgb(247 244 236 / 0.08);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid rgb(247 244 236 / 0.14);
+  }
+
+  .glass-light {
+    background: rgb(247 244 236 / 0.82);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid rgb(226 219 202 / 0.7);
+  }
+
+  /* Underline that grows from the left on hover — nav links */
+  .link-underline {
+    position: relative;
+  }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 1px;
+    width: 100%;
+    background-color: var(--color-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease-luxe);
+  }
+  .link-underline:hover::after,
+  .link-underline[data-active='true']::after {
+    transform: scaleX(1);
+  }
+
+  /* Arrow inside buttons nudges right on hover */
+  .btn-arrow {
+    transition: transform 0.35s var(--ease-luxe);
+  }
+  .group:hover .btn-arrow {
+    transform: translateX(4px);
+  }
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+
+@layer utilities {
+  /* Warm film grain — the single texture that keeps large flat
+     areas from looking flat/AI-generated. Very low opacity. */
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /*
+    Vignette + scrim for cinematic photography.
+
+    Deliberately heavy in the mid-tones: the hero photograph can be swapped
+    for any other shot, and headline contrast must not depend on that image
+    happening to be dark where the text sits.
+  */
+  .scrim {
+    background: linear-gradient(
+        to top,
+        rgb(23 24 20 / 0.94) 0%,
+        rgb(23 24 20 / 0.78) 30%,
+        rgb(23 24 20 / 0.55) 55%,
+        rgb(23 24 20 / 0.45) 78%,
+        rgb(23 24 20 / 0.6) 100%
+      ),
+      radial-gradient(120% 80% at 50% 50%, transparent 35%, rgb(23 24 20 / 0.55) 100%);
+  }
+
+  /* Extra wash behind the headline column on wide screens, where the copy
+     sits to the left and the photograph is fully visible on the right. */
+  .scrim-left {
+    background: linear-gradient(
+      to right,
+      rgb(23 24 20 / 0.85) 0%,
+      rgb(23 24 20 / 0.55) 38%,
+      rgb(23 24 20 / 0.15) 68%,
+      transparent 100%
+    );
+  }
+
+  /* Slow, barely-there zoom on editorial imagery */
+  .img-zoom {
+    transition: transform 1.2s var(--ease-luxe);
+  }
+  .group:hover .img-zoom {
+    transform: scale(1.04);
+  }
+}
+
+/* ============================================================
+   HERO MOTION
+   Keyframes live here rather than in Framer because these run
+   continuously — the compositor should own them, not React.
+   ============================================================ */
+
+/*
+  The accent word carries a gold gradient at rest. A single highlight passes
+  across it as the hero arrives and then stops — nothing on this page loops.
+  `forwards` holds the finished position so it never snaps back.
+*/
+.text-gold-gradient {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-gold-soft) 0%,
+    var(--color-gold) 28%,
+    #f4e6c4 46%,
+    var(--color-gold) 62%,
+    var(--color-gold-soft) 100%
+  );
+  background-size: 220% 100%;
+  background-position: 60% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes shimmer-once {
+  from {
+    background-position: 210% 0;
+  }
+  to {
+    background-position: 60% 0;
+  }
+}
+
+.text-shimmer-once {
+  animation: shimmer-once 1.5s cubic-bezier(0.22, 1, 0.36, 1) 1 forwards;
+}
+
+/*
+  A single gold light bar that crosses the hero once on arrival — the seam
+  that ties the photograph, the type and the cards into one movement.
+*/
+@keyframes light-sweep {
+  from {
+    transform: translateX(-30vw) skewX(-14deg);
+    opacity: 0;
+  }
+  22% {
+    opacity: 0.85;
+  }
+  to {
+    transform: translateX(130vw) skewX(-14deg);
+    opacity: 0;
+  }
+}
+
+.light-sweep {
+  animation: light-sweep 1.5s cubic-bezier(0.4, 0, 0.2, 1) 1 both;
+}
+
+/* ============================================================
+   REDUCED MOTION — honoured globally
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .img-zoom,
+  .group:hover .img-zoom {
+    transform: none !important;
+  }
+}
