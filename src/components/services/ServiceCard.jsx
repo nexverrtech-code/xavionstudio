@@ -33,19 +33,7 @@ export default function ServiceCard({ service, index }) {
 
       <p className="mt-2.5 flex-1 text-[0.9375rem] leading-relaxed text-muted">{service.short}</p>
 
-      <Link
-        to="/contact"
-        className="mt-5 inline-flex items-center gap-1.5 text-[0.8125rem] font-medium text-ink/60
-                   transition-colors duration-300 group-hover:text-gold"
-      >
-        Ask about this
-        <ArrowUpRight
-          className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-          strokeWidth={2}
-          aria-hidden="true"
-        />
-        <span className="sr-only"> — {service.title}</span>
-      </Link>
+
     </article>
   )
 }
