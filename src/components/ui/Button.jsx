@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ChevronRight } from 'lucide-react'
 
 const base =
   'group relative inline-flex items-center justify-center gap-2.5 font-medium whitespace-nowrap ' +
@@ -17,6 +17,9 @@ const variants = {
     'border border-ivory/30 text-ivory hover:border-gold hover:text-gold backdrop-blur-sm bg-ivory/5',
   /** Text-only, for tertiary links that still need an arrow. */
   quiet: 'text-ink hover:text-gold px-0',
+  /** Gold text + chevron, no chrome. The default under a centered heading:
+      an outlined pill there competes with the headline it sits beneath. */
+  link: 'text-gold hover:text-gold-soft px-0',
 }
 
 const sizes = {
@@ -40,12 +43,20 @@ export default function Button({
   className = '',
   ...props
 }) {
-  const classes = `${base} ${variants[variant]} ${variant === 'quiet' ? sizes[size].replace(/px-\d+/, 'px-0') : sizes[size]} ${className}`
+  const chromeless = variant === 'quiet' || variant === 'link'
+  const classes = `${base} ${variants[variant]} ${
+    chromeless ? sizes[size].replace(/px-\d+/, 'px-0') : sizes[size]
+  } ${className}`
 
   const content = (
     <>
       {children}
-      {arrow && <ArrowRight className="btn-arrow size-4 shrink-0" strokeWidth={2} aria-hidden="true" />}
+      {arrow &&
+        (variant === 'link' ? (
+          <ChevronRight className="btn-arrow size-4 shrink-0" strokeWidth={2.25} aria-hidden="true" />
+        ) : (
+          <ArrowRight className="btn-arrow size-4 shrink-0" strokeWidth={2} aria-hidden="true" />
+        ))}
     </>
   )
 

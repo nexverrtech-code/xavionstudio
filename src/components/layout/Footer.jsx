@@ -22,13 +22,13 @@ export default function Footer() {
     <footer className="relative overflow-hidden bg-night text-ivory">
       <div className="grain pointer-events-none absolute inset-0" aria-hidden="true" />
 
-      <div className="relative shell pt-16 pb-10 lg:pt-20">
+      <div className="relative shell pt-12 pb-8 lg:pt-14">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
           {/* ---- Brand ---- */}
           <div className="lg:col-span-4">
             <Logo tone="light" />
             <p className="mt-7 max-w-xs text-[0.9375rem] leading-relaxed text-ivory/55">
-              Premium fitness and training designed around strength, performance and wellbeing.
+              Premium fitness and training, built around how you actually train.
             </p>
 
             {socials.length > 0 && (

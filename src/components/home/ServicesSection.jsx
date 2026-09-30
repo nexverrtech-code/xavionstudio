@@ -13,16 +13,17 @@ export default function ServicesSection() {
   return (
     <section className="bg-cream">
       <div className="shell section-y">
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+        <div className="flex flex-col items-center gap-7 text-center">
           <SectionHeading
             eyebrow="Training"
-            title="Train with purpose."
-            lead="Programmes designed for different goals, experience levels and fitness needs — each one coached, structured and progressed."
-            maxWidth="max-w-xl"
+            title="Train with" accent="purpose."
+            lead="Coached. Structured. Progressed."
+            align="center"
+            maxWidth="max-w-2xl"
           />
 
           <Reveal delay={0.1}>
-            <Button to="/services" variant="outline" size="md" arrow>
+            <Button to="/services" variant="link" size="md" arrow>
               All {services.length} programmes
             </Button>
           </Reveal>

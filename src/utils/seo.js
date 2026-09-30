@@ -1,6 +1,5 @@
 import { site, siteUrl, localeFull, addressLines } from '../data/site'
 import { services } from '../data/services'
-import { hasPublishedPricing, tiers } from '../data/membership'
 
 const { city, area, state, pincode, street, geo } = site.location
 
@@ -14,7 +13,7 @@ export const pageMeta = {
   home: {
     path: '/',
     title: `${site.name} | Premium Gym & Fitness Studio in ${city}`,
-    description: `${site.name} is a premium fitness studio opening soon in ${area}, ${city}, ${state}, offering personal training, strength training, cardio, HIIT and functional fitness with flexible membership options.`,
+    description: `${site.name} is a premium fitness studio opening soon in ${area}, ${city}, ${state}, offering personal training, strength training, cardio, HIIT and functional fitness across a fully equipped floor.`,
     h1: 'Build Your Stronger Self',
   },
   services: {
@@ -23,17 +22,11 @@ export const pageMeta = {
     description: `Explore training at ${site.name} in ${area}, ${city} — strength training, personal training, cardio, HIIT, functional training, group fitness and mobility work.`,
     h1: 'Training Designed Around Your Goals',
   },
-  membership: {
-    path: '/membership',
-    title: `Gym Membership Plans in ${city} | ${site.name}`,
-    description: `Membership options at ${site.name}, ${area}, ${city} — Essential, Performance and Signature, with monthly, quarterly and yearly terms. Enquire for current pricing.`,
-    h1: 'Choose Your Membership',
-  },
-  requirements: {
-    path: '/requirements',
-    title: `Gym Requirements, Equipment & First Visit Guide | ${site.name}`,
-    description: `What to bring, the gym machines and equipment on the floor, and how your first visit works at ${site.name} in ${area}, ${city}, ${state}.`,
-    h1: 'Everything You Need To Get Started',
+  equipment: {
+    path: '/equipment',
+    title: `Gym Equipment & Machines in ${city} | ${site.name}`,
+    description: `The machines and equipment on the floor at ${site.name} in ${area}, ${city}, ${state} — strength, free weights, cardio and functional training.`,
+    h1: 'Machines and equipment',
   },
   contact: {
     path: '/contact',
@@ -60,14 +53,6 @@ const postalAddress = {
 
 const sameAs = Object.values(site.social).filter(Boolean)
 
-/** Derives "₹min-₹max" from whatever monthly prices are actually set. */
-function priceRangeFromTiers() {
-  const monthly = tiers.map((t) => t.prices.monthly).filter((v) => typeof v === 'number')
-  if (!monthly.length) return undefined
-  const min = Math.min(...monthly)
-  const max = Math.max(...monthly)
-  return min === max ? `₹${min}` : `₹${min}-₹${max}`
-}
 
 export function localBusinessSchema() {
   return {
@@ -99,8 +84,6 @@ export function localBusinessSchema() {
           })),
         }
       : {}),
-    // priceRange appears only once real prices exist in data/membership.js.
-    ...(hasPublishedPricing ? { priceRange: priceRangeFromTiers() } : {}),
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Training Programmes',
@@ -162,11 +145,11 @@ export const faqs = [
   },
   {
     q: `Is ${site.name} open yet?`,
-    a: `${site.name} is in its pre-launch phase and opening soon in ${area}, ${city}. Enquiries about founding memberships are open now on ${site.contact.phoneDisplay}.`,
+    a: `${site.name} is in its pre-launch phase and opening soon in ${area}, ${city}. Enquiries are open now on ${site.contact.phoneDisplay}.`,
   },
   {
     q: `Does ${site.name} offer personal training?`,
-    a: `Yes. ${site.name} offers one-to-one personal training with individual programme design, session-by-session coaching and regular progress reviews. It is included in the Signature membership and available alongside other tiers.`,
+    a: `Yes. ${site.name} offers one-to-one personal training with individual programme design, session-by-session coaching and regular progress reviews. `,
   },
   {
     q: `What services does ${site.name} offer?`,
@@ -176,15 +159,11 @@ export const faqs = [
       .replace(/,([^,]*)$/, ' and$1')}.`,
   },
   {
-    q: `What membership plans does ${site.name} offer?`,
-    a: `Three tiers: Essential for regular gym training, Performance for training with trainer guidance and progress tracking, and Signature for one-to-one personal training. Monthly, quarterly and yearly terms are available. Contact the studio for current pricing.`,
-  },
-  {
-    q: `What do I need to bring to ${site.name}?`,
-    a: `Bring a water bottle, workout clothes, clean indoor training shoes, a personal towel, and any registration or ID details requested when you sign up.`,
+    q: `What equipment does ${site.name} have?`,
+    a: `Guided-path strength machines, free weights with power racks and Olympic barbells, cardio including treadmills, bikes, rowers, a ski erg and a stair climber, and a functional area with kettlebells, sleds, rings and recovery tools.`,
   },
   {
     q: `How do I contact ${site.name}?`,
-    a: `Call ${site.contact.phoneDisplay} or message ${site.contact.whatsappDisplay} on WhatsApp. You can also send an enquiry through the contact form on the website.`,
+    a: `Call ${site.contact.phoneDisplay} or message ${site.contact.whatsappDisplay} on WhatsApp. Both are answered directly by the team.`,
   },
 ]

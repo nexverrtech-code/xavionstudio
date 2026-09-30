@@ -10,7 +10,7 @@ import SmartImage from '../ui/SmartImage'
  * `crumbs` renders a visible breadcrumb trail that mirrors the BreadcrumbList
  * in structured data — the two should never disagree.
  */
-export default function PageHero({ eyebrow, title, lead, image, imageAlt, crumbs = [] }) {
+export default function PageHero({ eyebrow, title, accent, lead, image, imageAlt, crumbs = [] }) {
   const reduce = useReducedMotion()
 
   return (
@@ -25,7 +25,7 @@ export default function PageHero({ eyebrow, title, lead, image, imageAlt, crumbs
       />
       <div className="grain pointer-events-none absolute inset-0" aria-hidden="true" />
 
-      <div className="relative shell pt-32 pb-16 sm:pt-36 lg:pt-44 lg:pb-20">
+      <div className="relative shell pt-28 pb-12 sm:pt-32 lg:pt-36 lg:pb-16">
         {crumbs.length > 0 && (
           <nav aria-label="Breadcrumb" className="mb-8">
             <ol className="flex flex-wrap items-center gap-1.5 text-[0.75rem] text-ivory/45">
@@ -69,6 +69,12 @@ export default function PageHero({ eyebrow, title, lead, image, imageAlt, crumbs
             className="block text-display-sm sm:text-display lg:text-display-lg"
           >
             {title}
+            {accent && (
+              <>
+                {' '}
+                <span className="accent">{accent}</span>
+              </>
+            )}
           </motion.span>
         </h1>
 

@@ -36,25 +36,24 @@ export default function ContactCTA() {
           </Reveal>
 
           <Reveal delay={0.06}>
-            <h2 className="mt-6 text-display-sm text-ivory sm:text-display">
-              Your next level starts with one conversation.
+            <h2 className="mt-6 text-display-sm text-ivory sm:text-display lg:text-display-lg">
+              Start with one <span className="accent">conversation.</span>
             </h2>
           </Reveal>
 
           <Reveal delay={0.14}>
             <p className="mt-6 max-w-xl text-[1.0625rem] leading-relaxed text-ivory/65">
-              Tell us what you are training for and we will talk you through the programmes, the memberships
-              and a free trial session — no obligation either way.
+              Tell us what you are training for. We will talk you through the rest — no obligation.
             </p>
           </Reveal>
 
           <Reveal delay={0.22}>
             <div className="mt-10 flex flex-wrap gap-3">
-              <Button to="/contact" variant="gold" size="lg" arrow>
-                Book Free Trial
-              </Button>
-              <Button href={whatsappLink()} variant="ghostLight" size="lg">
+              <Button href={whatsappLink()} variant="gold" size="lg" arrow>
                 Message on WhatsApp
+              </Button>
+              <Button href={telLink} variant="ghostLight" size="lg">
+                Call {site.contact.phoneDisplay}
               </Button>
             </div>
           </Reveal>

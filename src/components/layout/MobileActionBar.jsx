@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { MessageCircle, ArrowRight } from 'lucide-react'
-import { whatsappLink } from '../../data/site'
+import { MessageCircle, Phone } from 'lucide-react'
+import { whatsappLink, telLink } from '../../data/site'
 import { usePastHero } from '../../hooks/useScrollAnimation'
 
 /**
@@ -32,13 +31,13 @@ export default function MobileActionBar() {
               WhatsApp
             </a>
 
-            <Link
-              to="/contact"
+            <a
+              href={telLink}
               className="group flex items-center justify-center gap-2 bg-gold py-4 text-[0.8125rem] font-semibold tracking-[0.02em] text-night"
             >
-              Book Free Trial
-              <ArrowRight className="btn-arrow size-4" strokeWidth={2} aria-hidden="true" />
-            </Link>
+              <Phone className="size-4" strokeWidth={2} aria-hidden="true" />
+              Call the studio
+            </a>
           </div>
         </motion.div>
       )}

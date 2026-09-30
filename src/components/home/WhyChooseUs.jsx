@@ -12,22 +12,22 @@ const reasons = [
   {
     Icon: Target,
     title: 'A programme, not a guess',
-    body: 'You get a plan with a target and a way to measure it, so progress is something you can see rather than hope for.',
+    body: 'A plan, a target, a way to measure it.',
   },
   {
     Icon: UserCheck,
     title: 'Coaching on the floor',
-    body: 'Trainers work among the equipment, correcting technique as it happens instead of handing over a printout.',
+    body: 'Trainers correct technique as it happens, not on a printout.',
   },
   {
     Icon: LayoutGrid,
     title: 'Room to train properly',
-    body: 'Space planned around movement — clear floor for functional work, and equipment laid out so you are not queuing.',
+    body: 'Clear floor for functional work. No queuing for equipment.',
   },
   {
     Icon: ShieldCheck,
     title: 'Straight answers on pricing',
-    body: 'Memberships explained in full before you commit. No hidden add-ons, no pressure to upgrade on the spot.',
+    body: 'No hidden add-ons. No pressure to upgrade on the spot.',
   },
 ]
 
@@ -39,8 +39,8 @@ export default function WhyChooseUs() {
       <div className="relative shell section-y">
         <SectionHeading
           eyebrow="Why Xavion"
-          title="Built around how people actually train."
-          lead="Four things we have decided to be strict about, because they are what separates a studio that works from a room full of machines."
+          title="Built to" accent="coach."
+          lead="Four things we are strict about."
           tone="light"
         />
 

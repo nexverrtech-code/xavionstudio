@@ -19,7 +19,7 @@ export default function LocationMap() {
     : [site.name, street, localeFull, site.location.pincode].filter(Boolean).join(', ')
 
   return (
-    <div className="overflow-hidden rounded-[1.5rem] border border-line bg-white/50">
+    <div className="card overflow-hidden">
       {canEmbed ? (
         <div className="aspect-[16/10] w-full sm:aspect-[16/9]">
           <iframe

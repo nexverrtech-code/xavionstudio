@@ -14,7 +14,8 @@ export default function FitnessGuidelines() {
       <div className="shell section-y">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
-            <SectionHeading eyebrow="Guidelines" title={guidelines.title} lead={guidelines.lead} />
+            <SectionHeading eyebrow="Guidelines"
+            align="center" title={guidelines.title} lead={guidelines.lead} />
           </div>
 
           <div className="lg:col-span-8">

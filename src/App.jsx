@@ -9,8 +9,7 @@ import Preloader from './components/layout/Preloader'
 
 import Home from './pages/Home'
 import Services from './pages/Services'
-import Membership from './pages/Membership'
-import Requirements from './pages/Requirements'
+import Equipment from './pages/Equipment'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 
@@ -83,8 +82,7 @@ export default function App() {
           <Routes location={location}>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/membership" element={<Membership />} />
-            <Route path="/requirements" element={<Requirements />} />
+            <Route path="/equipment" element={<Equipment />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

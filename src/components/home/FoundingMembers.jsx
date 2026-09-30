@@ -1,7 +1,7 @@
 import { Quote, Eye, MessagesSquare, BadgeCheck } from 'lucide-react'
 import Button from '../ui/Button'
 import Reveal from '../ui/Reveal'
-import { site, localeShort } from '../../data/site'
+import { site, localeShort, whatsappLink } from '../../data/site'
 
 /**
  * ============================================================
@@ -21,17 +21,17 @@ const assurances = [
   {
     Icon: Eye,
     title: 'See the floor first',
-    body: 'Come and look at the space, the equipment and how it is laid out before you decide anything.',
+    body: 'See the space before you decide.',
   },
   {
     Icon: MessagesSquare,
     title: 'Talk to a trainer',
-    body: 'Ask about programming, experience and how they would approach your specific goal.',
+    body: 'Ask how they would approach your goal.',
   },
   {
     Icon: BadgeCheck,
     title: 'Train a session free',
-    body: 'Take a trial session on us. Judge the coaching by how it actually feels, not by a review.',
+    body: 'Judge the coaching, not a review.',
   },
 ]
 
@@ -57,22 +57,22 @@ export default function FoundingMembers() {
 
             <Reveal delay={0.14}>
               <p className="mt-7 text-[1.0625rem] leading-relaxed text-ink/80">
-                {site.name} has not opened its doors yet, so there are no member testimonials to show you.
-                When there are, they will be real words from real people who train here.
+                {site.name} has not opened yet, so there are no testimonials. When there are, they will be
+                real words from real members.
               </p>
             </Reveal>
 
             <Reveal delay={0.2}>
               <p className="mt-5 text-[1.0625rem] leading-relaxed text-muted">
-                Until then, judge us on the things you can actually check — the programmes, the coaching
-                approach, and a conversation with our team in {localeShort}.
+                Until then, judge us on what you can check: the programmes, the coaching, and a
+                conversation in {localeShort}.
               </p>
             </Reveal>
 
             <Reveal delay={0.28}>
               <div className="mt-9 flex flex-wrap gap-3">
-                <Button to="/contact" variant="ink" size="md" arrow>
-                  Book Free Trial
+                <Button href={whatsappLink()} variant="ink" size="md" arrow>
+                  Message on WhatsApp
                 </Button>
                 <Button to="/services" variant="outline" size="md">
                   See the programmes
@@ -87,9 +87,7 @@ export default function FoundingMembers() {
               {assurances.map(({ Icon, title, body }, i) => (
                 <Reveal key={title} delay={0.12 + i * 0.09}>
                   <li
-                    className="group flex gap-5 rounded-2xl border border-line bg-white/60 p-6 transition-all
-                               duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5
-                               hover:border-gold/40 hover:bg-white sm:gap-6 sm:p-8"
+                    className="group flex gap-5 card card-hover p-6 sm:gap-6 sm:p-8"
                   >
                     <span
                       className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-cream text-olive

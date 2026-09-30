@@ -134,31 +134,9 @@ export default function Preloader() {
               transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
               className="text-gold"
             >
-              <LogoMark className="size-[4.5rem]" />
+              <LogoMark className="h-24 w-auto sm:h-28" />
             </motion.div>
 
-            {/* Name — letters rise from behind a mask */}
-            <div className="mt-7 overflow-hidden">
-              <motion.p
-                initial={{ y: '110%' }}
-                animate={{ y: '0%' }}
-                transition={{ duration: 0.75, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
-                className="font-display text-[1.75rem] leading-none font-extrabold tracking-[0.22em] text-ivory uppercase sm:text-[2.25rem]"
-              >
-                Xavion
-              </motion.p>
-            </div>
-
-            <div className="mt-3 overflow-hidden">
-              <motion.p
-                initial={{ y: '110%' }}
-                animate={{ y: '0%' }}
-                transition={{ duration: 0.7, delay: 0.36, ease: [0.22, 1, 0.36, 1] }}
-                className="text-[0.625rem] font-semibold tracking-[0.42em] text-gold uppercase sm:text-[0.6875rem]"
-              >
-                Fitness Studio
-              </motion.p>
-            </div>
 
             {/* Hairline that draws left-to-right as the timer runs out */}
             <motion.div

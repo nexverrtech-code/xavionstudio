@@ -25,6 +25,10 @@
   /* ---- Type ---- */
   --font-display: 'Manrope', ui-sans-serif, system-ui, sans-serif;
   --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  /* Italic serif, used only on the one accent word in a heading. A soft
+     counterform against the tight sans is what stops "premium" reading as
+     "hard" — it is the whole softness lever, so it stays rare. */
+  --font-accent: 'Instrument Serif', Georgia, serif;
 
   /* Editorial display scale — tight leading, confident sizes */
   --text-display-sm: 2.25rem;
@@ -44,11 +48,11 @@
   --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* ---- Elevation — soft and low, never heavy ---- */
-  --shadow-soft: 0 1px 2px rgb(23 24 20 / 0.04), 0 12px 32px -12px rgb(23 24 20 / 0.1);
-  --shadow-lift: 0 2px 4px rgb(23 24 20 / 0.05), 0 24px 56px -20px rgb(23 24 20 / 0.16);
+  --shadow-soft: 0 1px 2px rgb(23 24 20 / 0.03), 0 8px 24px -14px rgb(23 24 20 / 0.08);
+  --shadow-lift: 0 1px 3px rgb(23 24 20 / 0.04), 0 18px 44px -22px rgb(23 24 20 / 0.12);
 
   /* ---- Radii ---- */
-  --radius-card: 1.25rem;
+  --radius-card: 1.5rem;
 }
 
 /* ============================================================
@@ -143,30 +147,63 @@
   /* Standard section padding — deliberately tighter than the usual
      py-24/py-32 default, which leaves big empty bands on laptops. */
   .section-y {
-    padding-block: 4.5rem;
+    padding-block: 3.25rem;
   }
 
   @media (min-width: 640px) {
     .section-y {
-      padding-block: 5.5rem;
+      padding-block: 4rem;
     }
   }
 
   @media (min-width: 1024px) {
     .section-y {
-      padding-block: 6.5rem;
+      padding-block: 4.75rem;
     }
   }
 
   /* The gap between a section's heading block and its content */
   .section-gap {
-    margin-top: 2.75rem;
+    margin-top: 2.25rem;
   }
 
   @media (min-width: 1024px) {
     .section-gap {
-      margin-top: 3.5rem;
+      margin-top: 2.75rem;
     }
+  }
+
+  /* The one card surface. Nine components were repeating
+     `border border-line bg-white/60 rounded-2xl` with slightly different
+     hover states; this is that pattern, once. */
+  .card {
+    border-radius: var(--radius-card);
+    background-color: #fff;
+    transition:
+      transform 0.5s var(--ease-luxe),
+      box-shadow 0.5s var(--ease-luxe);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  /* Same surface on the dark sections. */
+  .card-dark {
+    border-radius: var(--radius-card);
+    background-color: var(--color-charcoal);
+  }
+
+  /* The single soft word inside an otherwise tight sans heading. */
+  .accent {
+    font-family: var(--font-accent);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    /* Serif italic sits optically small next to Manrope 800 — nudge it up. */
+    font-size: 1.08em;
+    color: var(--color-gold);
   }
 
   /* Small uppercase eyebrow label used above headings */

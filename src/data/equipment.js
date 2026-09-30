@@ -1,92 +1,265 @@
 /**
  * ============================================================
- * ⚠️  ESSENTIAL GYM MACHINE REQUIREMENTS — AWAITING CONFIRMATION
+ * ⚠️  EQUIPMENT LIST — AWAITING CONFIRMATION
  * ============================================================
- * This is a STANDARD equipment list for a premium strength-and-conditioning
+ * This is a STANDARD specification for a premium strength-and-conditioning
  * studio. It is NOT yet the confirmed Xavion floor plan.
  *
  * Because of that, `equipmentConfirmed` below is `false`, and the page says
- * plainly that the final specification is being finalised. Nothing is
- * presented to the public as installed equipment that has not been verified.
+ * plainly that the specification is being finalised. Nothing is presented to
+ * the public as installed equipment that has not been verified.
  *
  * TO PUBLISH THIS AS FACT:
- *   1. Go through every `items` entry with the studio owner.
+ *   1. Go through every item with the studio owner.
  *   2. Delete anything that will not be on the floor. An equipment list is
- *      one of the few things prospective members genuinely check, and being
- *      wrong about it is the kind of thing people mention in reviews.
- *   3. Set `equipmentConfirmed = true`. The "being finalised" notice
- *      disappears and the heading switches to the present tense.
+ *      one of the few things prospective members genuinely check.
+ *   3. Set `equipmentConfirmed = true`.
+ *
+ * ── IMAGES ──
+ * `img` is a key into `equipmentImages`, not a path. There are ten
+ * photographs for fifty-eight machines, so several items share one: a photo
+ * of a weight stack is honest for every guided-path machine, whereas finding
+ * fifty-eight distinct stock shots would mean most of them showing the wrong
+ * equipment. Replace with real photographs of the actual floor and give each
+ * item its own key.
  * ============================================================
  */
 
 export const equipmentConfirmed = false
+
+/** The photo pool. Add a key here, then reference it from an item's `img`. */
+export const equipmentImages = {
+  stack: { src: '/images/eq-weight-stack-erode.webp', alt: 'Selector weight stack on a resistance machine' },
+  cable: { src: '/images/eq-cable-selector-erode.webp', alt: 'Cable machine weight selector and pin' },
+  plates: { src: '/images/eq-plate-rack-erode.webp', alt: 'Loaded plate and dumbbell rack' },
+  bench: { src: '/images/eq-benches-erode.webp', alt: 'Adjustable benches and pressing stations' },
+  rower: { src: '/images/eq-rower-erode.webp', alt: 'Rowing machine mid-stroke' },
+  rack: { src: '/images/strength-training-erode.webp', alt: 'Power rack with an Olympic barbell' },
+  machines: { src: '/images/weight-management-erode.webp', alt: 'Members training on resistance machines' },
+  cardio: { src: '/images/cardio-training-erode.webp', alt: 'Treadmills and cross trainers on the cardio floor' },
+  functional: { src: '/images/functional-training-erode.webp', alt: 'Battle ropes on the functional turf' },
+  recovery: { src: '/images/mobility-recovery-erode.webp', alt: 'Mat and floor work in the recovery area' },
+}
+
+const m = (name, trains, img, desc, outcomes) => ({ name, trains, img, desc, outcomes })
 
 export const equipmentZones = [
   {
     id: 'strength-machines',
     title: 'Strength Machines',
     icon: 'Dumbbell',
+    images: [equipmentImages.machines, equipmentImages.stack],
     lead: 'Guided-path resistance machines — the safest place for a beginner to build a base, and useful for isolation work at any level.',
     items: [
-      { name: 'Chest press', trains: 'Chest, shoulders, triceps' },
-      { name: 'Lat pulldown', trains: 'Back, biceps' },
-      { name: 'Seated row', trains: 'Mid-back, rear shoulders' },
-      { name: 'Shoulder press', trains: 'Shoulders, triceps' },
-      { name: 'Leg press', trains: 'Quads, glutes, hamstrings' },
-      { name: 'Leg extension', trains: 'Quads' },
-      { name: 'Leg curl', trains: 'Hamstrings' },
-      { name: 'Pec deck / rear delt', trains: 'Chest, rear shoulders' },
-      { name: 'Cable crossover station', trains: 'Full upper body, adjustable angles' },
-      { name: 'Abdominal crunch machine', trains: 'Core' },
+      m('Chest press', 'Chest, shoulders, triceps', 'stack',
+        'A seated pressing path that keeps the bar tracking for you, so you can push close to failure without a spotter.',
+        ['Builds pressing strength safely', 'Load and de-load fast', 'A good first pressing movement']),
+      m('Lat pulldown', 'Back, biceps', 'cable',
+        'Vertical pulling with adjustable load — the bridge most people use on the way to a full pull-up.',
+        ['Builds back width', 'Scales below bodyweight', 'Teaches the pull-up pattern']),
+      m('Seated row', 'Mid-back, rear shoulders', 'cable',
+        'Horizontal pulling against a chest pad, which takes the lower back out of the movement.',
+        ['Balances out pressing work', 'Improves posture', 'Low spinal load']),
+      m('Shoulder press', 'Shoulders, triceps', 'stack',
+        'Overhead pressing on a fixed path, with back support so the effort stays in the shoulders.',
+        ['Builds overhead strength', 'Supported lower back', 'Safe to train near failure']),
+      m('Leg press', 'Quads, glutes, hamstrings', 'machines',
+        'Heavy leg work with your back supported — the highest load most people can handle safely.',
+        ['Heavy loading without a bar', 'Adjustable foot position', 'Low technical barrier']),
+      m('Leg extension', 'Quads', 'machines',
+        'Isolates the quadriceps through a full knee extension.',
+        ['Targeted quad work', 'Knee-friendly volume', 'A good finisher']),
+      m('Leg curl', 'Hamstrings', 'machines',
+        'Isolates the hamstrings — the group most lifters under-train relative to quads.',
+        ['Balances quad-dominant training', 'Supports knee health', 'Simple to progress']),
+      m('Pec deck / rear delt', 'Chest, rear shoulders', 'stack',
+        'One frame, two jobs: chest flyes facing in, rear delts facing out.',
+        ['Isolates chest without triceps', 'Rear delt work for posture', 'Fast to switch between']),
+      m('Chest fly machine', 'Chest, front shoulders', 'stack',
+        'A wide arc that loads the chest at full stretch, where free weights give the least resistance.',
+        ['Loads the stretched position', 'Minimal triceps involvement', 'Controlled range']),
+      m('Cable crossover station', 'Full upper body, adjustable angles', 'cable',
+        'Two adjustable pulleys, which makes it the most versatile frame on the floor.',
+        ['Any angle of pull', 'Constant tension', 'Dozens of movements from one station']),
+      m('Triceps pushdown station', 'Triceps', 'cable',
+        'Cable pushdowns with a rope or bar attachment.',
+        ['Isolates triceps', 'Easy to drop-set', 'Elbow-friendly']),
+      m('Biceps curl machine', 'Biceps', 'stack',
+        'Curling with the upper arm braced, so momentum cannot help.',
+        ['Strict curling', 'No lower-back swing', 'Consistent tension']),
+      m('Lateral raise machine', 'Side shoulders', 'stack',
+        'Loads the side delts through the range where dumbbells go light.',
+        ['Builds shoulder width', 'Resistance where it matters', 'Easy to train to failure']),
+      m('Hip abductor / adductor', 'Glutes, inner thigh', 'machines',
+        'Seated work for the muscles that move the leg in and out.',
+        ['Hip stability', 'Supports squat mechanics', 'Often-skipped work']),
+      m('Calf raise machine', 'Calves', 'machines',
+        'Loaded calf raises through a full stretch and contraction.',
+        ['Builds lower-leg strength', 'Ankle resilience', 'High-rep friendly']),
+      m('Back extension bench', 'Lower back, glutes', 'bench',
+        'Hip hinge against bodyweight, and against a plate once that is easy.',
+        ['Strengthens the posterior chain', 'Supports deadlift work', 'Simple to progress']),
+      m('Abdominal crunch machine', 'Core', 'stack',
+        'Loaded trunk flexion, so core work can progress like everything else.',
+        ['Progressive core loading', 'Supported neck and back', 'Measurable progression']),
+      m('Assisted pull-up machine', 'Back, biceps', 'stack',
+        'Counterweights part of your bodyweight, so you can train real pull-ups before you can do one.',
+        ['A path to the first pull-up', 'Reduce assistance over time', 'Also useful for dips']),
     ],
   },
   {
     id: 'free-weights',
     title: 'Free Weights & Racks',
     icon: 'Activity',
+    images: [equipmentImages.rack, equipmentImages.plates],
     lead: 'Where progressive strength work actually happens. Barbell training is the backbone of every Xavion strength programme.',
     items: [
-      { name: 'Power rack with safety bars', trains: 'Squat, press, rack pulls' },
-      { name: 'Olympic barbells and bumper plates', trains: 'All compound lifts' },
-      { name: 'Flat, incline and decline benches', trains: 'Pressing variations' },
-      { name: 'Dumbbell set with rack', trains: 'Full body, unilateral work' },
-      { name: 'EZ-curl and fixed barbells', trains: 'Arms, accessory work' },
-      { name: 'Smith machine', trains: 'Guided compound work' },
-      { name: 'Deadlift platform', trains: 'Hinge patterns, heavy pulls' },
-      { name: 'Weight tree and collars', trains: 'Floor organisation and safety' },
+      m('Power rack with safety bars', 'Squat, press, rack pulls', 'rack',
+        'A cage with adjustable safety pins, so you can fail a squat on your own without getting hurt.',
+        ['Train heavy without a spotter', 'Squat, press and pull in one frame', 'Set the exact depth you want']),
+      m('Olympic barbells and bumper plates', 'All compound lifts', 'plates',
+        'Standard 20 kg bars and rubber plates that can be dropped without damaging the floor.',
+        ['The base of every strength block', 'Load in small increments', 'Drop-safe']),
+      m('Flat, incline and decline benches', 'Pressing variations', 'bench',
+        'Three angles, three slightly different emphases across the chest and shoulders.',
+        ['Varies the pressing angle', 'Pairs with the rack', 'Supports dumbbell work']),
+      m('Adjustable bench', 'Pressing at any angle', 'bench',
+        'One bench covering everything between flat and upright.',
+        ['Fine-tune the angle', 'Saves floor space', 'Works with every dumbbell movement']),
+      m('Hex dumbbells, 2.5–50 kg', 'Full body, unilateral work', 'plates',
+        'A full run of dumbbells, so each side of the body has to do its own work.',
+        ['Finds and fixes imbalances', 'Huge movement range', 'Small jumps between weights']),
+      m('EZ-curl and fixed barbells', 'Arms, accessory work', 'plates',
+        'Pre-loaded bars for arm work without stripping plates each set.',
+        ['Fast between sets', 'Wrist-friendly grip', 'Ideal for high-rep work']),
+      m('Preacher curl bench', 'Biceps', 'bench',
+        'Braces the upper arm at an angle that removes every bit of cheating.',
+        ['Strict biceps work', 'Loads the stretch', 'Pairs with the EZ bar']),
+      m('Smith machine', 'Guided compound work', 'rack',
+        'A barbell fixed to a vertical track, with hooks you can catch at any height.',
+        ['Safe to push near failure', 'Useful when training alone', 'Good for controlled tempo work']),
+      m('Deadlift platform', 'Hinge patterns, heavy pulls', 'rack',
+        'A dedicated surface built to take dropped weight without wrecking the floor.',
+        ['Pull heavy safely', 'Protects the floor and bars', 'Space to set up properly']),
+      m('Trap / hex bar', 'Deadlifts, carries, shrugs', 'plates',
+        'You stand inside this bar rather than behind it, which is far kinder to the lower back.',
+        ['Easier to learn than a straight bar', 'Less spinal shear', 'Great for carries']),
+      m('Landmine attachment', 'Rotational and pressing work', 'rack',
+        'One end of a barbell pinned into a pivot, creating an arc instead of a straight line.',
+        ['Shoulder-friendly pressing', 'Rotational core work', 'Easy to scale']),
+      m('Weight tree and collars', 'Floor organisation and safety', 'plates',
+        'Somewhere for every plate to live, and collars so nothing slides mid-set.',
+        ['Keeps the floor clear', 'Faster plate changes', 'Safer loaded bars']),
+      m('Weight belts and straps', 'Heavy pulls and carries', 'plates',
+        'Belts for bracing under a heavy bar, straps for when grip gives out before the target muscle does.',
+        ['Train the intended muscle', 'Supports heavy bracing', 'Available to borrow']),
+      m('Chalk station', 'Grip on heavy pulls', 'plates',
+        'Chalk and a bowl, kept in one place so it stays off the rest of the floor.',
+        ['Reliable grip', 'Contained mess', 'Standard on any serious floor']),
     ],
   },
   {
     id: 'cardio-machines',
     title: 'Cardio Machines',
     icon: 'HeartPulse',
+    images: [equipmentImages.cardio, equipmentImages.rower],
     lead: 'Conditioning equipment covering low-impact through to high-intensity interval work.',
     items: [
-      { name: 'Motorised treadmills', trains: 'Walking, running, incline work' },
-      { name: 'Upright and recumbent bikes', trains: 'Low-impact conditioning' },
-      { name: 'Cross trainer / elliptical', trains: 'Full-body low-impact cardio' },
-      { name: 'Rowing machine', trains: 'Full-body conditioning' },
-      { name: 'Stair climber', trains: 'Legs, cardiovascular endurance' },
-      { name: 'Air / assault bike', trains: 'High-intensity intervals' },
+      m('Motorised treadmills', 'Walking, running, incline work', 'cardio',
+        'Adjustable speed and incline, with cushioning that is easier on the knees than road running.',
+        ['Precise pace control', 'Incline for low-impact intensity', 'Works for walking and sprinting']),
+      m('Curved manual treadmill', 'Sprint intervals', 'cardio',
+        'No motor — the belt moves because you do, so it stops the moment you do.',
+        ['Self-paced sprinting', 'Higher effort per minute', 'Very safe to bail out of']),
+      m('Upright and recumbent bikes', 'Low-impact conditioning', 'cardio',
+        'Two seating positions; the recumbent takes all load off the lower back.',
+        ['Joint-friendly cardio', 'Good returning from injury', 'Easy to sustain long efforts']),
+      m('Spin bikes', 'Class-style interval work', 'cardio',
+        'Weighted flywheel bikes built for standing climbs and hard intervals.',
+        ['High-intensity intervals', 'Standing and seated work', 'Used in group sessions']),
+      m('Cross trainer / elliptical', 'Full-body low-impact cardio', 'cardio',
+        'Arms and legs together with no impact through the joints at all.',
+        ['Zero-impact conditioning', 'Full-body effort', 'Gentle on knees and hips']),
+      m('Rowing machine', 'Full-body conditioning', 'rower',
+        'The most complete cardio machine on any floor — legs, back and arms in one stroke.',
+        ['Trains most of the body at once', 'Measurable split times', 'Low impact, high effort']),
+      m('Ski erg', 'Full-body pulling conditioning', 'rower',
+        'A standing double-pole action that loads the lats and core hard.',
+        ['Upper-body conditioning', 'Pairs well with the rower', 'Standing position']),
+      m('Stair climber', 'Legs, cardiovascular endurance', 'cardio',
+        'A moving staircase — as honest a conditioning tool as exists.',
+        ['Serious leg endurance', 'High calorie burn', 'Low impact']),
+      m('Air / assault bike', 'High-intensity intervals', 'cardio',
+        'A fan bike where resistance rises with effort, so it is exactly as hard as you make it.',
+        ['Self-limiting intensity', 'Arms and legs together', 'Built for short intervals']),
+      m('Jump ropes', 'Warm-up, footwork, conditioning', 'functional',
+        'The cheapest conditioning tool there is, and one of the best for coordination.',
+        ['Fast warm-ups', 'Improves footwork', 'Takes almost no space']),
     ],
   },
   {
     id: 'functional-zone',
     title: 'Functional & Recovery',
     icon: 'Waves',
+    images: [equipmentImages.functional, equipmentImages.recovery],
     lead: 'Open floor space and the tools for movement quality, conditioning circuits and recovery between harder sessions.',
     items: [
-      { name: 'Kettlebell set', trains: 'Swings, carries, full-body work' },
-      { name: 'Medicine and slam balls', trains: 'Power, rotational strength' },
-      { name: 'Battle ropes', trains: 'Conditioning, grip' },
-      { name: 'Plyometric boxes', trains: 'Jumps, step-ups' },
-      { name: 'Suspension trainer', trains: 'Bodyweight strength, core' },
-      { name: 'Resistance bands', trains: 'Warm-up, assistance, rehab-style work' },
-      { name: 'Foam rollers and mats', trains: 'Mobility and recovery' },
-      { name: 'Stretching area', trains: 'Range of motion, cool-down' },
+      m('Kettlebell set', 'Swings, carries, full-body work', 'functional',
+        'An offset handle that makes swinging and carrying natural in a way dumbbells never are.',
+        ['Explosive hip work', 'Grip and core demand', 'One tool, many movements']),
+      m('Medicine and slam balls', 'Power, rotational strength', 'functional',
+        'Weighted balls you can throw and slam without worrying about the landing.',
+        ['Trains power output', 'Rotational core work', 'Safe to release at speed']),
+      m('Battle ropes', 'Conditioning, grip', 'functional',
+        'Heavy ropes with no eccentric loading, which means all effort and almost no soreness.',
+        ['Hard conditioning, low soreness', 'Big grip demand', 'Easy to scale by tempo']),
+      m('Plyometric boxes', 'Jumps, step-ups', 'functional',
+        'Stacked heights for jumping onto and stepping up from.',
+        ['Builds lower-body power', 'Scales by height', 'Doubles as a bench']),
+      m('Suspension trainer', 'Bodyweight strength, core', 'functional',
+        'Straps anchored overhead — change the angle of your body and you change the difficulty.',
+        ['Infinitely scalable', 'Constant core demand', 'Works for every level']),
+      m('Gymnastic rings', 'Bodyweight pulling and pressing', 'functional',
+        'The least stable pulling surface there is, which is exactly the point.',
+        ['Huge stability demand', 'Shoulder-friendly rotation', 'Rows through to dips']),
+      m('Parallette bars', 'Bodyweight strength, dips', 'functional',
+        'Low parallel bars for dips, L-sits and push-up variations.',
+        ['Wrist-friendly pressing', 'Core strength work', 'Compact']),
+      m('Resistance bands', 'Warm-up, assistance, rehab-style work', 'recovery',
+        'Light to heavy loops for warming up, assisting pull-ups or adding tension to a bar.',
+        ['Excellent warm-up tool', 'Assists bodyweight work', 'Travels anywhere']),
+      m('Turf sled track', 'Pushes, pulls, sprints', 'functional',
+        'A strip of turf long enough to actually push a sled down.',
+        ['Conditioning with no eccentric', 'Very easy on joints', 'Scales by load']),
+      m('Weighted sled', 'Leg drive, conditioning', 'functional',
+        'Push it, pull it or drag it — brutally effective and almost impossible to do with bad form.',
+        ['Leg power and conditioning', 'Minimal soreness', 'Hard to do wrong']),
+      m('Bulgarian bags', 'Rotational strength', 'functional',
+        'A crescent-shaped weighted bag built for swinging and spinning.',
+        ['Rotational power', 'Grip and shoulder demand', 'Full-body circuits']),
+      m('Sandbags', 'Carries, cleans, odd-object lifting', 'functional',
+        'Shifting, awkward load — much closer to lifting something in real life than a barbell is.',
+        ['Real-world carrying strength', 'Huge core demand', 'Forgiving on joints']),
+      m('Balance and wobble boards', 'Ankle stability, proprioception', 'recovery',
+        'Unstable platforms that train the small stabilising muscles around the ankle.',
+        ['Ankle resilience', 'Better balance', 'Useful returning from injury']),
+      m('Foam rollers and mats', 'Mobility and recovery', 'recovery',
+        'Floor space and rollers for working on tissue quality between harder sessions.',
+        ['Eases training stiffness', 'Supports recovery days', 'Somewhere to stretch properly']),
+      m('Massage guns', 'Recovery between sessions', 'recovery',
+        'Percussive devices for working on a specific tight area quickly.',
+        ['Targeted relief', 'Fast to use', 'Good post-session']),
+      m('Stretching area', 'Range of motion, cool-down', 'recovery',
+        'Quiet floor space away from the machines, so stretching is not done in a walkway.',
+        ['Room to move properly', 'A calmer corner of the floor', 'Space for mobility work']),
     ],
   },
 ]
 
 /** Total machine/equipment lines — shown as a count, derived not claimed. */
 export const equipmentCount = equipmentZones.reduce((total, zone) => total + zone.items.length, 0)
+
+/** Flat list, for search across every zone. */
+export const allEquipment = equipmentZones.flatMap((zone) =>
+  zone.items.map((item) => ({ ...item, zoneId: zone.id, zoneTitle: zone.title })),
+)

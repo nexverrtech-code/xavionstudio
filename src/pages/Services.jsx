@@ -30,8 +30,9 @@ export default function Services() {
 
       <PageHero
         eyebrow="Programmes"
-        title="Training Designed Around Your Goals."
-        lead="Explore training programmes built for different goals, experience levels and fitness needs."
+        title="Training designed around your"
+        accent="goals."
+        lead="Built around where you are now."
         image="/images/strength-training-erode-wide.webp"
         imageAlt={`Squat racks and barbells on the strength floor at ${site.name}, ${localeShort}`}
         crumbs={[
@@ -44,8 +45,10 @@ export default function Services() {
         <div className="shell section-y">
           <SectionHeading
             eyebrow="What we offer"
-            title="Train with purpose."
-            lead={`Every programme at ${site.name} is coached and structured — you should always know what a session is for and what it is building towards.`}
+            title="Train with"
+            accent="purpose."
+            lead="Know what every session is for."
+            align="center"
             maxWidth="max-w-2xl"
           />
 
@@ -64,8 +67,8 @@ export default function Services() {
         <div className="shell section-y">
           <SectionHeading
             eyebrow="In detail"
-            title="Choose a programme."
-            lead="Who it suits, what it includes and how it is actually run."
+            title="In" accent="detail."
+            lead="Who it suits."
             maxWidth="max-w-xl"
           />
 

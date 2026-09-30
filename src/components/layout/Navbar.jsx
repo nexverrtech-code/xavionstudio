@@ -93,8 +93,8 @@ export default function Navbar() {
                 {site.contact.phoneDisplay}
               </a>
               <span className={`h-4 w-px ${onLight ? 'bg-line' : 'bg-ivory/20'}`} aria-hidden="true" />
-              <Button to="/contact" variant="gold" size="sm" arrow>
-                Book Free Trial
+              <Button href={whatsappLink()} variant="gold" size="sm" arrow>
+                WhatsApp
               </Button>
             </div>
 
@@ -161,8 +161,8 @@ export default function Navbar() {
                 transition={{ duration: 0.4, delay: 0.36, ease: [0.22, 1, 0.36, 1] }}
                 className="mt-10 space-y-3"
               >
-                <Button to="/contact" variant="gold" size="lg" arrow className="w-full">
-                  Book Free Trial
+                <Button href={whatsappLink()} variant="gold" size="lg" arrow className="w-full">
+                  Message on WhatsApp
                 </Button>
 
                 <div className="grid grid-cols-2 gap-3">

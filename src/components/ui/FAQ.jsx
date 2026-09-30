@@ -18,7 +18,8 @@ import Reveal from './Reveal'
 export default function FAQ({
   faqs,
   eyebrow = 'Questions',
-  title = 'Straight answers.',
+  title = 'Straight',
+  accent = 'answers.',
   lead,
   tone = 'dark',
   className = '',
@@ -32,7 +33,13 @@ export default function FAQ({
       <div className="shell section-y">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
-            <SectionHeading eyebrow={eyebrow} title={title} lead={lead} tone={light ? 'light' : 'dark'} />
+            <SectionHeading
+              eyebrow={eyebrow}
+              title={title}
+              accent={accent}
+              lead={lead}
+              tone={light ? 'light' : 'dark'}
+            />
           </div>
 
           <div className="lg:col-span-8">

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Check, ArrowRight } from 'lucide-react'
-import SmartImage from '../ui/SmartImage'
 import Button from '../ui/Button'
 import Reveal from '../ui/Reveal'
 
@@ -77,22 +76,8 @@ export default function ServiceExplorer({ items }) {
 
         {/* ---- Detail panel ---- */}
         <div className="lg:col-span-8">
-          <div className="grid gap-8 xl:grid-cols-11">
-            <div className="xl:col-span-5">
-              <AnimatePresence mode="wait">
-                <motion.div key={active.slug} {...fade(reduce)}>
-                  <SmartImage
-                    src={active.image}
-                    alt={active.alt}
-                    aspect="aspect-[4/5]"
-                    className="rounded-2xl"
-                    sizes="(min-width: 1280px) 34vw, 45vw"
-                  />
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            <div className="xl:col-span-6">
+          <div>
+            <div className="max-w-2xl">
               <AnimatePresence mode="wait">
                 <motion.div key={active.slug} {...fade(reduce)}>
                   <p className="eyebrow text-gold">{active.title}</p>
@@ -133,7 +118,7 @@ export default function ServiceExplorer({ items }) {
                   </p>
 
                   <Button to="/contact" variant="ink" size="md" arrow className="mt-7">
-                    Talk To A Trainer
+                    Ask about this
                   </Button>
                 </motion.div>
               </AnimatePresence>
@@ -151,15 +136,7 @@ export default function ServiceExplorer({ items }) {
               delay={Math.min(i, 3) * 0.06}
               className="w-[78vw] shrink-0 snap-center sm:w-[60vw]"
             >
-              <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white/50">
-                <SmartImage
-                  src={service.image}
-                  alt={service.alt}
-                  /* 4:5 matches the source crop exactly - no re-cropping, and
-                     the photograph gets to lead the card. */
-                  aspect="aspect-[4/5]"
-                  sizes="(min-width: 640px) 60vw, 78vw"
-                />
+              <article className="card flex h-full flex-col overflow-hidden">
 
                 <div className="flex flex-1 flex-col p-6">
                   <p className="eyebrow text-gold">{service.title}</p>
@@ -181,7 +158,7 @@ export default function ServiceExplorer({ items }) {
 
                   <div className="mt-auto pt-6">
                     <Button to="/contact" variant="outline" size="sm" arrow className="w-full">
-                      Talk To A Trainer
+                      Ask about this
                     </Button>
                   </div>
                 </div>

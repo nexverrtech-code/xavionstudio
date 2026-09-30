@@ -1,28 +1,36 @@
-import { goals } from './goals'
-
 /**
  * ============================================================
  * HERO SLIDESHOW
  * ============================================================
- * The background photography cycles slowly on its own. It is kept separate
- * from the goal selector on purpose:
+ * The background photography cycles slowly on its own. It is the only
+ * moving thing left in the hero — headline, copy and buttons hold still.
  *
- *   • The slideshow drives the IMAGE ONLY. Headline, supporting copy, the
- *     goal pills and the glass card never change unprompted — a hero that
- *     rewrites its own text is a hero nobody finishes reading.
- *   • The moment a visitor picks a goal, the slideshow stops for good and the
- *     photograph locks to that goal's image. They have stated what they came
- *     for; the studio should stop talking over them.
- *
- * Slides reuse the goal photography so there is no second set of files to
- * keep in sync — add an entry here to show a picture that no goal uses.
+ * Each entry points at a `-wide` master; SmartImage swaps in the 4:5
+ * companion on tall viewports (see src/utils/images.js).
  * ============================================================
  */
-export const heroSlides = goals.map((goal) => ({
-  src: goal.image,
-  alt: goal.imageAlt,
-  framing: goal.framing,
-}))
+export const heroSlides = [
+  {
+    src: '/images/premium-gym-erode-wide.webp',
+    alt: 'Squat racks and loaded barbells on the strength floor at Xavion Fitness Studio, Thindal',
+    framing: '50% 40%',
+  },
+  {
+    src: '/images/cardio-training-erode-wide.webp',
+    alt: 'Low-lit cardio floor with treadmills and cross trainers at Xavion Fitness Studio, Erode',
+    framing: '45% 45%',
+  },
+  {
+    src: '/images/weight-management-erode-wide.webp',
+    alt: 'Two members training on resistance machines at Xavion Fitness Studio, Erode',
+    framing: '55% 40%',
+  },
+  {
+    src: '/images/strength-training-erode-wide.webp',
+    alt: 'Squat rack and barbell station on the strength floor at Xavion Fitness Studio, Thindal',
+    framing: '50% 50%',
+  },
+]
 
 /** How long each slide holds before the next one moves in. */
 export const SLIDE_MS = 6000

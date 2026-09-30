@@ -76,7 +76,7 @@ export const site = {
 }
 
 /** Pre-filled WhatsApp enquiry link. */
-export const whatsappLink = (message = "Hi Xavion Fitness Studio, I'd like to know more about memberships.") =>
+export const whatsappLink = (message = "Hi Xavion Fitness Studio, I'd like to know more about training here.") =>
   `https://wa.me/${site.contact.whatsapp}?text=${encodeURIComponent(message)}`
 
 export const telLink = `tel:${site.contact.phone}`
@@ -109,7 +109,6 @@ export const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination
 export const navLinks = [
   { label: 'Home', to: '/' },
   { label: 'Services', to: '/services' },
-  { label: 'Membership', to: '/membership' },
-  { label: 'Requirements', to: '/requirements' },
+  { label: 'Equipment', to: '/equipment' },
   { label: 'Contact', to: '/contact' },
 ]

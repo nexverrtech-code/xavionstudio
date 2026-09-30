@@ -7,6 +7,8 @@ import Reveal from './Reveal'
 export default function SectionHeading({
   eyebrow,
   title,
+  /** Trailing words rendered in the serif italic accent, e.g. "with purpose." */
+  accent,
   lead,
   align = 'left',
   tone = 'dark', // 'dark' text on light bg | 'light' text on dark bg
@@ -31,15 +33,29 @@ export default function SectionHeading({
 
       <Reveal delay={0.06}>
         <Heading
-          className={`text-display-sm sm:text-display ${titleColor} ${align === 'center' ? 'text-balance' : ''}`}
+          className={`text-display-sm sm:text-display lg:text-display-lg ${titleColor} ${
+            align === 'center' ? 'text-balance' : ''
+          }`}
         >
           {title}
+          {accent && (
+            <>
+              {' '}
+              <span className="accent">{accent}</span>
+            </>
+          )}
         </Heading>
       </Reveal>
 
       {lead && (
         <Reveal delay={0.12}>
-          <p className={`mt-6 max-w-xl text-[1.0625rem] leading-relaxed ${leadColor}`}>{lead}</p>
+          <p
+            className={`mt-5 max-w-xl text-[1.0625rem] leading-relaxed sm:text-lg ${leadColor} ${
+              align === 'center' ? 'mx-auto text-balance' : ''
+            }`}
+          >
+            {lead}
+          </p>
         </Reveal>
       )}
     </div>

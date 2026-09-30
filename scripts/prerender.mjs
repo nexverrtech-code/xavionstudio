@@ -61,8 +61,7 @@ const { siteUrl } = await import(pathToFileURL(join(root, 'src', 'data', 'site.j
 const routes = [
   { url: '/', out: 'index.html', priority: '1.0' },
   { url: '/services', out: 'services/index.html', priority: '0.9' },
-  { url: '/membership', out: 'membership/index.html', priority: '0.9' },
-  { url: '/requirements', out: 'requirements/index.html', priority: '0.8' },
+  { url: '/equipment', out: 'equipment/index.html', priority: '0.9' },
   { url: '/contact', out: 'contact/index.html', priority: '0.8' },
   // Host fallback for unknown paths. Excluded from the sitemap.
   { url: '/404', out: '404.html', priority: null },

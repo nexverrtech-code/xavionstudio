@@ -1,7 +1,7 @@
 import AnimatedNumber from '../ui/AnimatedNumber'
 import Reveal from '../ui/Reveal'
 import { services } from '../../data/services'
-import { tiers } from '../../data/membership'
+import { equipmentCount } from '../../data/equipment'
 import { site, localeShort } from '../../data/site'
 
 /**
@@ -20,7 +20,7 @@ import { site, localeShort } from '../../data/site'
  */
 const stats = [
   { value: services.length, suffix: '', label: 'Training Programmes' },
-  { value: tiers.length, suffix: '', label: 'Membership Tiers' },
+  { value: equipmentCount, suffix: '', label: 'Machines & Tools' },
   { text: '1:1', label: 'Personal Coaching' },
   { text: site.isPreLaunch ? 'Opening Soon' : 'Now Open', label: localeShort, small: true },
 ]
