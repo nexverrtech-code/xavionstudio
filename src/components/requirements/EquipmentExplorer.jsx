@@ -9,10 +9,10 @@ import Reveal from '../ui/Reveal'
 import { useLockBodyScroll } from '../../hooks/useScrollAnimation'
 import {
   equipmentZones,
-  equipmentImages,
   equipmentConfirmed,
   equipmentCount,
   allEquipment,
+  machineImage,
 } from '../../data/equipment'
 
 const EASE = [0.22, 1, 0.36, 1]
@@ -128,8 +128,6 @@ export default function EquipmentExplorer() {
     setOpenIndex(index)
   }
 
-  const imageFor = (item) => equipmentImages[item.img] ?? equipmentImages.machines
-
   return (
     <section className="relative overflow-hidden bg-night" id="equipment">
       <div className="grain pointer-events-none absolute inset-0" aria-hidden="true" />
@@ -152,7 +150,7 @@ export default function EquipmentExplorer() {
           <div
             role="tablist"
             aria-label="Equipment zones"
-            className="scrollbar-none -mx-4 flex gap-2.5 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:justify-center sm:px-0"
+            className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center sm:gap-2.5"
           >
             {equipmentZones.map((z) => {
               const isActive = !searching && z.id === zoneId
@@ -167,7 +165,7 @@ export default function EquipmentExplorer() {
                     setQuery('')
                     setZoneId(z.id)
                   }}
-                  className={`relative flex shrink-0 items-center gap-2.5 rounded-full px-5 py-3 text-[0.8125rem] font-semibold transition-colors duration-300 ${
+                  className={`relative flex items-center justify-center rounded-full px-3 py-2.5 text-[0.6875rem] font-semibold transition-colors duration-300 sm:shrink-0 sm:px-5 sm:py-3 sm:text-[0.8125rem] ${
                     isActive
                       ? 'text-night'
                       : 'border border-ivory/18 text-ivory/65 hover:border-ivory/40 hover:text-ivory'
@@ -181,10 +179,12 @@ export default function EquipmentExplorer() {
                       aria-hidden="true"
                     />
                   )}
-                  <span className="relative flex items-center gap-2.5">
-                    <ServiceIcon name={z.icon} className="size-4" />
-                    {z.title}
-                    <span className={isActive ? 'text-night/55' : 'text-ivory/35'}>{z.items.length}</span>
+                  <span className="relative flex min-w-0 items-center gap-1.5 sm:gap-2.5">
+                    <ServiceIcon name={z.icon} className="hidden shrink-0 sm:block sm:size-4" />
+                    <span className="text-center sm:whitespace-nowrap">{z.title}</span>
+                    <span className={`shrink-0 ${isActive ? 'text-night/55' : 'text-ivory/35'}`}>
+                      {z.items.length}
+                    </span>
                   </span>
                 </button>
               )
@@ -225,7 +225,7 @@ export default function EquipmentExplorer() {
         >
           <AnimatePresence mode="popLayout">
             {list.map((item, i) => {
-              const img = imageFor(item)
+              const img = machineImage(item)
 
               return (
                 <motion.li
@@ -249,7 +249,7 @@ export default function EquipmentExplorer() {
                       className="relative"
                     >
                       <SmartImage
-                        src={img.src}
+                        src={img.card}
                         alt={img.alt}
                         aspect="aspect-[4/3]"
                         imgClassName="img-zoom"
@@ -344,8 +344,8 @@ export default function EquipmentExplorer() {
                 layoutId={reduce ? undefined : `eq-img-${open.zoneTitle}-${open.name}`}
               >
                 <SmartImage
-                  src={imageFor(open).src}
-                  alt={imageFor(open).alt}
+                  src={machineImage(open).wide}
+                  alt={machineImage(open).alt}
                   aspect="aspect-[16/9]"
                   sizes="(min-width: 768px) 48rem, 100vw"
                 />

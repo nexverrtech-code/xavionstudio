@@ -27,22 +27,26 @@ than a broken-image icon, so the layout never collapses mid-swap.
 
 | Filename | Scene | Used on |
 |---|---|---|
-| `premium-gym-erode.webp` | Wide dark gym interior — carries the whole first impression | Home hero, contact CTA |
-| `gym-facilities-erode.webp` | Equipment and floor layout | Home intro, contact hero |
-| `fitness-trainer-erode.webp` | Trainer coaching a member | Home intro |
-| `strength-training-erode.webp` | Barbell on the platform | Services hero, facility grid |
-| `personal-training-erode.webp` | One-to-one coaching session | Membership hero |
-| `cardio-training-erode.webp` | Treadmills and bikes | Facility grid, services |
+| `premium-gym-erode.webp` | Wide dark gym interior — carries the whole first impression | Home hero, contact CTA, OG image |
+| `gym-facilities-erode.webp` | Equipment and floor layout | Contact hero |
+| `strength-training-erode.webp` | Barbell on the platform | Services hero, hero slideshow |
+| `personal-training-erode.webp` | One-to-one coaching session | Services explorer |
+| `cardio-training-erode.webp` | Treadmills and bikes | Services, hero slideshow, stair climber fallback |
 | `hiit-training-erode.webp` | Group mid-interval | Services explorer |
-| `functional-training-erode.webp` | Battle ropes on turf | Requirements hero, facility grid |
-| `weight-management-erode.webp` | Two members on resistance machines | Services explorer |
+| `functional-training-erode.webp` | Battle ropes on turf | Equipment hero, services |
+| `weight-management-erode.webp` | Two members on resistance machines | Services, hero slideshow |
 | `group-fitness-erode.webp` | Group silhouetted against the windows | Services explorer |
-| `mobility-recovery-erode.webp` | Mat and floor work | Facility grid |
+| `mobility-recovery-erode.webp` | Mat and floor work | Services explorer |
 | `gym-exterior-thindal-erode.webp` | Dark interior, used behind the location card | Contact location panel |
-| `xavion-fitness-studio-logo.png` | 512×512 mark on the night background | JSON-LD `logo`, OG image |
+| `xavion-logo.png` | White wordmark with alpha | Header, footer |
+| `xavion-fitness-studio-logo.png` | 512x512 mark on the night background | JSON-LD `logo` |
 
-Specs: WebP, two crops each (see below), ~4.5 MB total on disk, every file under 300 KB. All
-lazy-load except the hero, which is `priority` (eager + `fetchpriority="high"`).
+Only `premium-gym`, `gym-facilities`, `strength-training`, `personal-training`,
+`cardio-training`, `functional-training` and `weight-management` have `-wide`
+companions; the rest are card-only and never head a page.
+
+Specs: WebP, ~4.5 MB total on disk, every file under 300 KB. All lazy-load
+except the hero, which is `priority` (eager + `fetchpriority="high"`).
 
 ### Art direction these were picked against
 
@@ -69,6 +73,33 @@ did not. Apply the same rules to any replacement:
 The logo PNG and `/apple-touch-icon.png` were generated from the same vector as
 `public/favicon.svg`, so the mark is identical across favicon, touch icon,
 header and structured data.
+
+---
+
+## `eq/` — one render per machine
+
+The equipment page shows a picture of every machine on the floor, so this
+folder is **one render per machine**, not a shared pool. 57 machines x 2 crops
+= 114 files, 8.1 MB, averaging 70 KB.
+
+| File | Ratio | Size | Used by |
+|---|---|---|---|
+| `eq/<slug>.webp` | 4:3 | 800x600 | Card thumbnail in the grid |
+| `eq/<slug>-wide.webp` | 16:9 | 1400x788 | Detail dialog |
+
+`<slug>` is the `img` value on the machine in `src/data/equipment.js`, and
+`machineImage()` there builds both paths from it. **Adding a machine means
+adding both crops under its slug** — there is no fallback pool any more.
+
+A pool did exist, and its `rower` key silently shadowed the rowing machine's
+own render. If you reintroduce a shared image, give it an explicit
+`{ src, alt }` on the machine rather than a key that lives in the same
+namespace as the slugs. Exactly one machine uses that escape hatch today: the
+stair climber, which had no render in the supplied set and points at the
+cardio-floor photograph with alt text that says so.
+
+These came from an AI batch, converted with `sharp` at q74/q72 and centre-cropped
+— the products sit centred with wide margins, so `cover` never clips the machine.
 
 ---
 
@@ -111,7 +142,7 @@ ended up loading portrait crops and stretching them.
 **Every file needs a different scene.** Reusing one image across the facility
 grid is the single most obvious tell of a template site.
 
-If generating with AI, keep the look identical across all twelve and vary only
+If generating with AI, keep the look identical across the set and vary only
 the subject:
 
 > Ultra-realistic premium fitness photography, luxury modern gym interior,
@@ -137,6 +168,6 @@ blown-out image will still fight the type.
 
 ## Alt text
 
-Written per image in `src/data/services.js`,
-`src/components/home/FacilityShowcase.jsx` and the page files. Each one
+Written per image in `src/data/services.js`, `src/data/equipment.js`
+and the page files. Each one
 describes its actual scene — don't collapse them into one repeated string.
